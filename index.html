@@ -17,7 +17,16 @@
     <div id="map"></div>
 
     <script>
-        var map = L.map('map').setView([51.505, -0.09], 13);
+        var center = [-7.17823297640175, -38.77776149398453];
+        var map = L.map('map').setView(center, 13);
+        var icone = L.icon({
+            iconUrl: 'https://cdn-icons-png.freepik.com/256/3661/3661280.png',
+            iconSize: [24, 24]
+        })
+        var marker = L.marker(center,{
+            draggable:true,
+            icon: icone
+        }).addTo(map);
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
