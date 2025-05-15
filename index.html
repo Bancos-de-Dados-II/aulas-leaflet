@@ -31,6 +31,19 @@
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
+
+        map.on('click', (evt)=>{
+            marker.setLatLng(evt.latlng);
+            map.setView(evt.latlng);
+        });
+
+        map.locate();
+
+        map.on('locationfound', (evt)=>{
+            map.setView(evt.latlng);
+            marker.setLatLng(evt.latlng);
+        });
+
     </script>
 
 </body>
