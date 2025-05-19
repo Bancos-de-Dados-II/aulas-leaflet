@@ -14,8 +14,13 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="map"></div>
 
+    <div>
+        <input type="text" id="local" 
+        placeholder="Digite o local">
+        <button id="botaoBuscar">Buscar</button>
+    </div>
+    <div id="map"></div>
     <script>
         var center = [-7.17823297640175, -38.77776149398453];
         var map = L.map('map').setView(center, 13);
@@ -27,6 +32,7 @@
             draggable:true,
             icon: icone
         }).addTo(map);
+
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -42,6 +48,19 @@
         map.on('locationfound', (evt)=>{
             map.setView(evt.latlng);
             marker.setLatLng(evt.latlng);
+        });
+
+        const botaoBuscar = document
+            .getElementById('botaoBuscar');
+        
+        botaoBuscar.addEventListener('click', ()=>{
+            const local = document
+                .getElementById('local').value;
+            
+            fetch(`https://nominatim.openstreetmap.org/search?q=${local}&format=jsonv2`)
+                .then(result => result.json())
+                .then(locais => console.log(locais));
+
         });
 
     </script>
