@@ -59,8 +59,14 @@
             
             fetch(`https://nominatim.openstreetmap.org/search?q=${local}&format=jsonv2`)
                 .then(result => result.json())
-                .then(locais => console.log(locais));
-
+                .then(locais => {
+                    if(locais){
+                        const ponto = [locais[0].lat, locais[0].lon];
+                        map.setView(ponto);
+                        marker.setLatLng(ponto);
+                    }
+                });
+                //TODO: Fazer o catch
         });
 
     </script>
