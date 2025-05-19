@@ -50,6 +50,12 @@
             marker.setLatLng(evt.latlng);
         });
 
+        map.on('dblclick', (evt)=>{
+            fetch(`https://nominatim.openstreetmap.org/reverse?lat=${evt.latlng.lat}&lon=${evt.latlng.lng}&format=jsonv2`)
+                .then(data => data.json())
+                .then(local => console.log(local))
+        });
+
         const botaoBuscar = document
             .getElementById('botaoBuscar');
         
