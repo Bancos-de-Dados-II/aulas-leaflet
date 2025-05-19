@@ -53,7 +53,9 @@
         map.on('dblclick', (evt)=>{
             fetch(`https://nominatim.openstreetmap.org/reverse?lat=${evt.latlng.lat}&lon=${evt.latlng.lng}&format=jsonv2`)
                 .then(data => data.json())
-                .then(local => console.log(local))
+                .then(local => 
+                    console.log(local.address)
+                )
         });
 
         const botaoBuscar = document
