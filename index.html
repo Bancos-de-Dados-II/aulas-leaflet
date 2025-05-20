@@ -21,6 +21,9 @@
         <button id="botaoBuscar">Buscar</button>
     </div>
     <div id="map"></div>
+    <div id="form">
+        <button id="botaoSalvar">Salvar</button>
+    </div>
     <script>
         var center = [-7.17823297640175, -38.77776149398453];
         var map = L.map('map').setView(center, 13);
@@ -75,6 +78,15 @@
                     }
                 });
                 //TODO: Fazer o catch
+        });
+
+        const botaoSalvar = document.getElementById('botaoSalvar');
+        botaoSalvar.addEventListener('click', (evt)=>{
+            const obj = {
+                type: "Point",
+                coordinates: [marker.getLatLng().lng, marker.getLatLng().lat]
+            }
+            console.log(JSON.stringify(obj));
         });
 
     </script>
